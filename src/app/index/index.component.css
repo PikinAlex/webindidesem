@@ -1,0 +1,52 @@
+html {
+    font-size: 14px;
+  }
+  @media (min-width: 768px) {
+    html {
+      font-size: 16px;
+    }
+  }
+  
+  .container {
+    max-width: 960px;
+  }
+  
+  .pricing-header {
+    max-width: 700px;
+  }
+  
+  .card-deck .card {
+    min-width: 220px;
+  }
+  .nav-bar{
+    background-color:#007bff !important;
+  }
+  .menu{
+    text-align: center;
+  }
+  .boton{
+    background-color: #007bff;
+  }
+
+  .footer{
+    background-color: #53acff ;
+
+  }
+  .mb-2{
+    margin-bottom: 0 !important;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    padding: 0;
+    text-align: center;
+  }
+  .texto{
+    max-width: 100%;
+    flex-grow: 1 !important;
+    flex-basis: 0 !important;
+  }
+  .container{
+    max-width: 1200px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
