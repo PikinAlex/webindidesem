@@ -18,9 +18,17 @@ import { PieComponent } from './pie/pie.component';
 import { IndexComponent } from './index/index.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
+import { IniciarSesionComponent } from './iniciar-sesion/iniciar-sesion.component';
+import { PantallaPrincipalComponent } from './pantalla-principal/pantalla-principal.component';
+import { AgregarEstrategiaComponent } from './agregar-estrategia/agregar-estrategia.component';
 
 const routes: Routes = [
   {path:'', component: IndexComponent},
+  {path:'iniciar-sesion', component: IniciarSesionComponent},
+  {path:'registro-usuario', component: RegistroUsuarioComponent},
+  {path:'agregar-estrategia', component: AgregarEstrategiaComponent},
+  {path:'pantalla-principal', component: PantallaPrincipalComponent}
 
 ];
 @NgModule({
@@ -28,7 +36,11 @@ const routes: Routes = [
     AppComponent,
     CabezaComponent,
     PieComponent,
-    IndexComponent
+    IndexComponent,
+    RegistroUsuarioComponent,
+    IniciarSesionComponent,
+    PantallaPrincipalComponent,
+    AgregarEstrategiaComponent
   ],
   imports: [
     BrowserModule,
