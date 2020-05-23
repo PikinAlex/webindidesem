@@ -23,14 +23,33 @@ import { IniciarSesionComponent } from './iniciar-sesion/iniciar-sesion.componen
 import { PantallaPrincipalComponent } from './pantalla-principal/pantalla-principal.component';
 import { AgregarEstrategiaComponent } from './agregar-estrategia/agregar-estrategia.component';
 
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireAuthModule } from "@angular/fire/auth";
+import { LoginComponent } from './admin/login/login.component';
+import { RegisterComponent } from './admin/register/register.component';
+import { ForgotPasswordComponent } from './admin/forgot-password/forgot-password.component';
+import { VerifyEmailComponent } from './admin/verify-email/verify-email.component';
+import { environment } from '../environments/environment';
+import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { AuthService } from './auth/auth.service';
+
 const routes: Routes = [
   {path:'', component: IndexComponent},
   {path:'iniciar-sesion', component: IniciarSesionComponent},
   {path:'registro-usuario', component: RegistroUsuarioComponent},
   {path:'agregar-estrategia', component: AgregarEstrategiaComponent},
-  {path:'pantalla-principal', component: PantallaPrincipalComponent}
+  {path:'pantalla-principal', component: PantallaPrincipalComponent},
 
 ];
+
+var config = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  databaseURL: "YOUR_DATABASE_URL",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID"
+};
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,12 +59,15 @@ const routes: Routes = [
     RegistroUsuarioComponent,
     IniciarSesionComponent,
     PantallaPrincipalComponent,
-    AgregarEstrategiaComponent
+    AgregarEstrategiaComponent,
+    LoginComponent,
+    RegisterComponent,
+    ForgotPasswordComponent,
+    VerifyEmailComponent,
   ],
   imports: [
     BrowserModule,
     MenuModule,
-    BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MenuModule,
@@ -55,8 +77,20 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    AngularFireModule.initializeApp(config),
+    AngularFireAuthModule,
+    AppRoutingModule,
+    AppRoutingModule,
+    AngularFireAuthModule,
+    RouterModule.forRoot(routes),
+    BrowserModule,
+    BrowserAnimationsModule,
+    AngularFireAuthModule,
+    RouterModule.forRoot(routes),
+    BrowserAnimationsModule,
+    AngularFirestoreModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

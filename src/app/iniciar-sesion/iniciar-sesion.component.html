@@ -1,17 +1,24 @@
-<form class="form-signin">
-    <img class="mb-4" src="../../assets/engranes.png" alt="" width="200" height="150">
-    <p></p>
-    <h1 class="h3 mb-3 font-weight-normal">Iniciar Sesion</h1>
-    <label for="inputEmail" class="sr-only">Correo Electronico</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Correo Electronico" required autofocus>
-    <label for="inputPassword" class="sr-only">Contraseña</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Recordar mis datos
-      </label>
-    
+<div class="container pt-3">
+    <div class="row justify-content-sm-center">
+      <div class="col-sm-10 col-md-6">
+        <div class="card border-info">
+          <div class="card-header">Login</div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4 text-center">
+                <img src="https://placeimg.com/128/128/nature">
+              </div>
+              <div class="col-md-8">
+                <form>
+                  <input type="text" class="form-control mb-2" placeholder="Email" required autofocus>
+                  <input type="password" class="form-control mb-2" placeholder="Password" required>
+                  <button class="btn btn-lg btn-primary btn-block mb-1" type="submit">Login</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar Sesion</button>
-    <button class="btn btn-lg btn-primary btn-block" type="submit" routerLink="/registro-usuario">Registrarme</button>
-  </form>
+  </div>
+  
