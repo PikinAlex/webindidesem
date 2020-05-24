@@ -25,13 +25,15 @@ import { AgregarEstrategiaComponent } from './agregar-estrategia/agregar-estrate
 
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
-import { LoginComponent } from './admin/login/login.component';
-import { RegisterComponent } from './admin/register/register.component';
-import { ForgotPasswordComponent } from './admin/forgot-password/forgot-password.component';
-import { VerifyEmailComponent } from './admin/verify-email/verify-email.component';
+
+
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AuthService } from './auth/auth.service';
+import { ChartsModule } from 'ng2-charts';
+import { HistoricoPorcentajeMetaComponent } from './components/historico-porcentaje-meta/historico-porcentaje-meta.component';
+import { ComparativoMensualMetaComponent } from './components/comparativo-mensual-meta/comparativo-mensual-meta.component';
+import { PorcentajeGlobalMetasComponent } from './components/porcentaje-global-metas/porcentaje-global-metas.component';
 
 const routes: Routes = [
   {path:'', component: IndexComponent},
@@ -60,10 +62,9 @@ var config = {
     IniciarSesionComponent,
     PantallaPrincipalComponent,
     AgregarEstrategiaComponent,
-    LoginComponent,
-    RegisterComponent,
-    ForgotPasswordComponent,
-    VerifyEmailComponent,
+    HistoricoPorcentajeMetaComponent,
+    ComparativoMensualMetaComponent,
+    PorcentajeGlobalMetasComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,7 +89,8 @@ var config = {
     AngularFireAuthModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    ChartsModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
