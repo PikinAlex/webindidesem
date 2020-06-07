@@ -47,6 +47,7 @@ import { AdministrarCuentaComponent } from './opciones/administrar-cuenta/admini
 import { MiPerfilComponent } from './opciones/mi-perfil/mi-perfil.component';
 import { EquipoComponent } from './opciones/equipo/equipo.component';
 import { InvitarMiembrosComponent } from './opciones/invitar-miembros/invitar-miembros.component';
+import { CrearProyectoComponent } from './opciones/crear-proyecto/crear-proyecto.component';
 
 const routes: Routes = [
   {path:'', component: IndexComponent},
@@ -106,6 +107,10 @@ const routes: Routes = [
       path: 'invitar-miembros',
       component: InvitarMiembrosComponent
     },
+    {
+      path: 'crear-proyecto',
+      component: CrearProyectoComponent
+    },
   ],
   }
 ];
@@ -144,6 +149,7 @@ var config = {
     MiPerfilComponent,
     EquipoComponent,
     InvitarMiembrosComponent,
+    CrearProyectoComponent,
   ],
   imports: [
     BrowserModule,
