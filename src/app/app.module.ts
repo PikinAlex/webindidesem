@@ -18,8 +18,6 @@ import { PieComponent } from './pie/pie.component';
 import { IndexComponent } from './index/index.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
-import { IniciarSesionComponent } from './iniciar-sesion/iniciar-sesion.component';
 import { PantallaPrincipalComponent } from './pantalla-principal/pantalla-principal.component';
 import { AgregarEstrategiaComponent } from './agregar-estrategia/agregar-estrategia.component';
 
@@ -48,12 +46,25 @@ import { MiPerfilComponent } from './opciones/mi-perfil/mi-perfil.component';
 import { EquipoComponent } from './opciones/equipo/equipo.component';
 import { InvitarMiembrosComponent } from './opciones/invitar-miembros/invitar-miembros.component';
 import { CrearProyectoComponent } from './opciones/crear-proyecto/crear-proyecto.component';
+import { ContactComponent } from './contact/contact.component';
+
+import { TodoListComponent } from './todo-list/todo-list.component';
+import { LoginComponent } from './admin/login/login.component';
+import { RegisterComponent } from './admin/register/register.component';
+import { ForgotPasswordComponent } from './admin/forgot-password/forgot-password.component';
+import { VerifyEmailComponent } from './admin/verify-email/verify-email.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
 
 const routes: Routes = [
   {path:'', component: IndexComponent},
-  {path:'iniciar-sesion', component: IniciarSesionComponent},
-  {path:'registro-usuario', component: RegistroUsuarioComponent},
+  {path:'iniciar-sesion', component: LoginComponent},
+  {path:'registro-usuario', component: RegisterComponent},
+  {path:'contraseña-olvidada', component: ForgotPasswordComponent},
+  {path:'verificar-email', component: VerifyEmailComponent},
   {path:'agregar-estrategia', component: AgregarEstrategiaComponent},
+  { path: 'todos', component: TodoListComponent},
+  { path: 'contact', component: ContactComponent },
+  { path: 'dashboard', component: DashboardComponent },
   {path:'pantalla-principal', component: PantallaPrincipalComponent,children: [
     {
       path: 'metas-pendientes',
@@ -116,12 +127,14 @@ const routes: Routes = [
 ];
 
 var config = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  databaseURL: "YOUR_DATABASE_URL",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID"
+  apiKey: "AIzaSyCf_ONCe-0kMRONxNH2QapifvR6_DFb1oA",
+  authDomain: "desemindi.firebaseapp.com",
+  databaseURL: "https://desemindi.firebaseio.com",
+  projectId: "desemindi",
+  storageBucket: "desemindi.appspot.com",
+  messagingSenderId: "174499078006",
+  appId: "1:174499078006:web:e26bc5713cb21a5d5e2457",
+  measurementId: "G-JP4RJ9K7JB"
 };
 @NgModule({
   declarations: [
@@ -129,8 +142,6 @@ var config = {
     CabezaComponent,
     PieComponent,
     IndexComponent,
-    RegistroUsuarioComponent,
-    IniciarSesionComponent,
     PantallaPrincipalComponent,
     AgregarEstrategiaComponent,
     HistoricoPorcentajeMetaComponent,
@@ -150,32 +161,26 @@ var config = {
     EquipoComponent,
     InvitarMiembrosComponent,
     CrearProyectoComponent,
+    ContactComponent,
+    DashboardComponent,
+
   ],
   imports: [
     BrowserModule,
     MenuModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    MenuModule,
     ButtonModule,
     AccordionModule,
-    RouterModule.forRoot(routes),
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-    AngularFireModule.initializeApp(config),
-    AngularFireAuthModule,
-    AppRoutingModule,
-    AppRoutingModule,
     AngularFireAuthModule,
     RouterModule.forRoot(routes),
-    BrowserModule,
-    BrowserAnimationsModule,
-    AngularFireAuthModule,
-    RouterModule.forRoot(routes),
+    RouterModule,
     BrowserAnimationsModule,
     AngularFirestoreModule,
-    ChartsModule
+    ChartsModule,
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
