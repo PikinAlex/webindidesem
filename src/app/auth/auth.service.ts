@@ -38,11 +38,11 @@ export  class  AuthService {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['pantalla-principal']);
         });
         this.SetUserData(result.user);
       }).catch((error) => {
-        window.alert(error.message)
+        window.alert("Correo o contraseña invalido.")
       })
   }
 
@@ -61,14 +61,14 @@ export  class  AuthService {
   SendVerificationMail() {
     return this.afAuth.auth.currentUser.sendEmailVerification()
     .then(() => {
-      this.router.navigate(['verify-email-address']);
+      this.router.navigate(['verificar-email']);
     })
   }
 
   ForgotPassword(passwordResetEmail) {
     return this.afAuth.auth.sendPasswordResetEmail(passwordResetEmail)
     .then(() => {
-      window.alert('Password reset email sent, check your inbox.');
+      window.alert('Contraseña Reseteada, Favor de verificar en su bandeja de entrada');
     }).catch((error) => {
       window.alert(error)
     })
@@ -87,7 +87,7 @@ export  class  AuthService {
     return this.afAuth.auth.signInWithPopup(provider)
     .then((result) => {
        this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['pantalla-principal']);
         })
       this.SetUserData(result.user);
     }).catch((error) => {
@@ -112,7 +112,7 @@ export  class  AuthService {
   SignOut() {
     return this.afAuth.auth.signOut().then(() => {
       localStorage.removeItem('user');
-      this.router.navigate(['sign-in']);
+      this.router.navigate(['iniciar-sesion']);
     })
   }
 }

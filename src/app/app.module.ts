@@ -58,14 +58,15 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 const routes: Routes = [
   {path:'', component: IndexComponent},
   {path:'iniciar-sesion', component: LoginComponent},
-  {path:'registro-usuario', component: RegisterComponent},
-  {path:'contraseña-olvidada', component: ForgotPasswordComponent},
+  {path: 'registro-usuario',component: RegisterComponent },
+  {path: 'contraseña-olvidada',component: ForgotPasswordComponent },
   {path:'verificar-email', component: VerifyEmailComponent},
   {path:'agregar-estrategia', component: AgregarEstrategiaComponent},
   { path: 'todos', component: TodoListComponent},
   { path: 'contact', component: ContactComponent },
   { path: 'dashboard', component: DashboardComponent },
   {path:'pantalla-principal', component: PantallaPrincipalComponent,children: [
+
     {
       path: 'metas-pendientes',
       component: MetasPendientesComponent
@@ -126,16 +127,6 @@ const routes: Routes = [
   }
 ];
 
-var config = {
-  apiKey: "AIzaSyCf_ONCe-0kMRONxNH2QapifvR6_DFb1oA",
-  authDomain: "desemindi.firebaseapp.com",
-  databaseURL: "https://desemindi.firebaseio.com",
-  projectId: "desemindi",
-  storageBucket: "desemindi.appspot.com",
-  messagingSenderId: "174499078006",
-  appId: "1:174499078006:web:e26bc5713cb21a5d5e2457",
-  measurementId: "G-JP4RJ9K7JB"
-};
 @NgModule({
   declarations: [
     AppComponent,
@@ -163,6 +154,10 @@ var config = {
     CrearProyectoComponent,
     ContactComponent,
     DashboardComponent,
+    ForgotPasswordComponent,
+    RegisterComponent,
+    LoginComponent,
+    VerifyEmailComponent
 
   ],
   imports: [
@@ -175,12 +170,12 @@ var config = {
     ReactiveFormsModule,
     FontAwesomeModule,
     AngularFireAuthModule,
-    RouterModule.forRoot(routes),
     RouterModule,
     BrowserAnimationsModule,
     AngularFirestoreModule,
     ChartsModule,
     AngularFireModule.initializeApp(environment.firebase),
+    RouterModule.forRoot(routes)
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
