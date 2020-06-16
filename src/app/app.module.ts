@@ -55,6 +55,7 @@ import { ForgotPasswordComponent } from './admin/forgot-password/forgot-password
 import { VerifyEmailComponent } from './admin/verify-email/verify-email.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 const routes: Routes = [
   {path:'', component: IndexComponent},
   {path:'iniciar-sesion', component: LoginComponent},
@@ -157,7 +158,8 @@ const routes: Routes = [
     ForgotPasswordComponent,
     RegisterComponent,
     LoginComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+ 
 
   ],
   imports: [
@@ -175,7 +177,8 @@ const routes: Routes = [
     AngularFirestoreModule,
     ChartsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    AngularFireDatabaseModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
