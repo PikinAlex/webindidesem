@@ -19,7 +19,6 @@ import { IndexComponent } from './index/index.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PantallaPrincipalComponent } from './pantalla-principal/pantalla-principal.component';
-import { AgregarEstrategiaComponent } from './agregar-estrategia/agregar-estrategia.component';
 
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
@@ -62,7 +61,6 @@ const routes: Routes = [
   {path: 'registro-usuario',component: RegisterComponent },
   {path: 'contraseña-olvidada',component: ForgotPasswordComponent },
   {path:'verificar-email', component: VerifyEmailComponent},
-  {path:'agregar-estrategia', component: AgregarEstrategiaComponent},
   { path: 'todos', component: TodoListComponent},
   { path: 'contact', component: ContactComponent },
   { path: 'dashboard', component: DashboardComponent },
@@ -135,7 +133,6 @@ const routes: Routes = [
     PieComponent,
     IndexComponent,
     PantallaPrincipalComponent,
-    AgregarEstrategiaComponent,
     HistoricoPorcentajeMetaComponent,
     ComparativoMensualMetaComponent,
     PorcentajeGlobalMetasComponent,

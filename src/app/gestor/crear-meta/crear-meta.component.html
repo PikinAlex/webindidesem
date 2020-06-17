@@ -1,1 +1,32 @@
-<p>crear-meta works!</p>
+<div class="container">
+
+    <h1 style="margin-top: 25px;">
+      {{title}}
+    </h1>
+  
+    <div class="row" style="margin-top: 25px;">
+      <div class="col-md-3">
+        <input type="text" class="form-control" [(ngModel)]="email" placeholder="email">
+      </div>
+      <div class="col-md-3">
+        <button type="button" (click)="CreateRecord()" [disabled]="!email" class="btn btn-primary">+
+          Invitar miembro al proyecto</button>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 25px;">
+      <div class="col-md-3">
+        <div class="card" style="width: 18rem;" *ngFor="let item of invitados">
+          <div class="card-body">
+            <h5 class="card-title">{{item.email}}</h5>
+            <!--<h6 class="card-subtitle mb-2 text-muted">Age: {{item.email}} Years</h6>
+            <p class="card-text">Address: {{item.email}}</p>-->
+          
+            <button class="card-link" (click)="RemoveRecord(item.id)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+  </div>
