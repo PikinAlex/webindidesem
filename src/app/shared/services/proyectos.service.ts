@@ -6,7 +6,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class ProyectosService {
 
- 
+
   constructor(
     private firestore: AngularFirestore
   ) { }
@@ -19,7 +19,7 @@ export class ProyectosService {
     return this.firestore.collection('Proyectos').snapshotChanges();
   }
 
-  actualizar_proyecto(recordID,record){
+  actualizar_proyecto(recordID, record) {
     this.firestore.doc('Proyectos/' + recordID).update(record);
   }
 
