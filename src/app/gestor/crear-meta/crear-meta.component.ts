@@ -10,6 +10,12 @@ export class CrearMetaComponent implements OnInit {
   title = 'Crear Metas';
   metas: any;
   nombre: string;
+  medicion: string;
+  valor_inicial:string;
+  logro:string;
+  frecuencia:string;
+  descripcion:string;
+
   constructor(private CrearMeta: CrearMetaService) { }
 
   ngOnInit() {
@@ -20,6 +26,11 @@ export class CrearMetaComponent implements OnInit {
           id: e.payload.doc.id,
           isEdit: false,
           nombre: e.payload.doc.data()['nombre'],
+          medicion: e.payload.doc.data()['medicion'],
+          valor_inicial: e.payload.doc.data()['valor_inicial'],
+          logro: e.payload.doc.data()['logro'],
+          frecuencia: e.payload.doc.data()['frecuencia'],
+          descripcion: e.payload.doc.data()['descripcion'],
         };
       })
       console.log(this.nombre);

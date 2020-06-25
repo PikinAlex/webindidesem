@@ -5,11 +5,33 @@
 
     <div class="row" style="margin-top: 25px;">
         <div class="col-md-3">
-            <input type="text" class="form-control" [(ngModel)]="nombre" placeholder="email">
+            <input type="text" class="form-control" [(ngModel)]="nombre" placeholder="Nombre Meta">
+        </div>
+        <div class="col-md-3">
+            <input type="text" class="form-control" [(ngModel)]="descripcion" placeholder="Descripcion Meta">
+        </div>
+        <div class="col-md-3">
+            <input type="text" class="form-control" [(ngModel)]="medicion" placeholder="Medicion">
+        </div>
+        <div class="col-md-3">
+            <input type="text" class="form-control" [(ngModel)]="valor_inicial" placeholder="Valor Inicial">
+        </div>
+        <div class="col-md-3">
+            <input type="text" class="form-control" [(ngModel)]="logro" placeholder="Se quiere">
+        </div>
+
+        <div class="col-md-3">
+        <label for="frecuencias"  [(ngModel)]="frecuencia">Frecuencia:</label>
+
+        <select name="frecuencias" id="frecuencias">
+            <option value="bimestre">Bimestre</option>
+            <option value="semestre">Semestre</option>
+            <option value="ano">Año</option>
+        </select>
         </div>
         <div class="col-md-3">
             <button type="button" (click)="CreateRecord()" [disabled]="!nombre" class="btn btn-primary">+
-          Invitar miembro al proyecto</button>
+          Crear Meta</button>
         </div>
     </div>
 
