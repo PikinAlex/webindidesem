@@ -1,16 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { CrearMetaService } from '../../shared/services/crear-meta.service';
-
+import {SelectItem} from 'primeng/api';
 @Component({
   selector: 'app-crear-meta',
   templateUrl: './crear-meta.component.html',
   styleUrls: ['./crear-meta.component.css']
 })
+
+interface City {
+  name: string;
+  code: string;
+}
+
 export class CrearMetaComponent implements OnInit {
   title = 'Crear Metas';
   metas: any;
   nombre: string;
-  constructor(private CrearMeta: CrearMetaService) { }
+
+  cities: City[];
+    selectedCity: City;
+
+  constructor(private CrearMeta: CrearMetaService) {
+    this.cities = [
+      {name: 'New York', code: 'NY'},
+      {name: 'Rome', code: 'RM'},
+      {name: 'London', code: 'LDN'},
+      {name: 'Istanbul', code: 'IST'},
+      {name: 'Paris', code: 'PRS'}
+  ];
+   }
 
   ngOnInit() {
     this.CrearMeta.leer_metas().subscribe(data => {

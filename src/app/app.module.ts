@@ -4,9 +4,9 @@ import {FormsModule} from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
-import {AccordionModule} from 'primeng/accordion';   
-import {ButtonModule} from 'primeng/button'; 
-import {MenuModule} from 'primeng/menu'; 
+import {AccordionModule} from 'primeng/accordion';
+import {ButtonModule} from 'primeng/button';
+import {MenuModule} from 'primeng/menu';
 
 import { Routes, RouterModule } from '@angular/router';
 
@@ -156,7 +156,7 @@ const routes: Routes = [
     RegisterComponent,
     LoginComponent,
     VerifyEmailComponent,
- 
+
 
   ],
   imports: [

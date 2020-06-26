@@ -5,6 +5,10 @@
 
     <div class="row" style="margin-top: 25px;">
         <div class="col-md-3">
+            <p-dropdown [options]="cities" [(ngModel)]="selectedCity" placeholder="Select a City" optionLabel="name" [showClear]="true"></p-dropdown>
+            <p>Selected City: {{selectedCity ? selectedCity.name : 'none'}}</p>
+        </div>
+        <div class="col-md-3">
             <input type="text" class="form-control" [(ngModel)]="nombre" placeholder="email">
         </div>
         <div class="col-md-3">
