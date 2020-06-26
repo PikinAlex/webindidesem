@@ -4,20 +4,31 @@
     </h1>
 
     <div class="row" style="margin-top: 25px;">
-        <div class="col-md-3">
+        <div class="mt-5">
             <input type="text" class="form-control" [(ngModel)]="nombre" placeholder="Nombre Meta">
         </div>
         <div class="col-md-3">
             <input type="text" class="form-control" [(ngModel)]="descripcion" placeholder="Descripcion Meta">
         </div>
         <div class="col-md-3">
-            <input type="text" class="form-control" [(ngModel)]="medicion" placeholder="Medicion">
+            <label for="medicion"  [(ngModel)]="medicion">Medicion:</label>
+    
+            <select name="medicion" id="medicion">
+                <option value="unidad">Unidad</option>
+                <option value="porcentaje">Porcentaje</option>
+            </select>
         </div>
         <div class="col-md-3">
             <input type="text" class="form-control" [(ngModel)]="valor_inicial" placeholder="Valor Inicial">
         </div>
+        
         <div class="col-md-3">
-            <input type="text" class="form-control" [(ngModel)]="logro" placeholder="Se quiere">
+            <label for="logro"  [(ngModel)]="logro">Se desea:</label>
+    
+            <select name="logro" id="logro">
+                <option value="aumentar">Aumentar</option>
+                <option value="disminuir">Disminuir</option>
+            </select>
         </div>
 
         <div class="col-md-3">
