@@ -1,33 +1,26 @@
+import { Proyectos } from './../../shared/models/proyectos';
 import { Component, OnInit } from '@angular/core';
 import { CrearMetaService } from '../../shared/services/crear-meta.service';
-import {SelectItem} from 'primeng/api';
+import { ProyectosService } from '../../shared/services/proyectos.service';
 @Component({
   selector: 'app-crear-meta',
   templateUrl: './crear-meta.component.html',
   styleUrls: ['./crear-meta.component.css']
 })
 
-interface City {
-  name: string;
-  code: string;
-}
-
 export class CrearMetaComponent implements OnInit {
-  title = 'Crear Metas';
+  title = 'Nueva Meta';
   metas: any;
   nombre: string;
-
-  cities: City[];
-    selectedCity: City;
-
-  constructor(private CrearMeta: CrearMetaService) {
-    this.cities = [
-      {name: 'New York', code: 'NY'},
-      {name: 'Rome', code: 'RM'},
-      {name: 'London', code: 'LDN'},
-      {name: 'Istanbul', code: 'IST'},
-      {name: 'Paris', code: 'PRS'}
-  ];
+  email: string;
+  valor_inicial: string;
+  medicion: string;
+  logro: string;
+  frecuencia: string;
+  projectID: string;
+  nameProject: string;
+  proyectos: Proyectos[];
+  constructor(private CrearMeta: CrearMetaService, private proyectosService: ProyectosService) {
    }
 
   ngOnInit() {
@@ -46,6 +39,15 @@ export class CrearMetaComponent implements OnInit {
         };
       })
       console.log(this.nombre);
+    });
+
+    this.proyectosService.lee_proyecto().subscribe(data => {
+      this.proyectos = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          nombre: e.payload.doc.data()['nombre_proyecto']
+        } as Proyectos;
+      });
     });
   }
 

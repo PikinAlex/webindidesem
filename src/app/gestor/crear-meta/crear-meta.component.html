@@ -4,60 +4,91 @@
     </h1>
 
     <div class="row" style="margin-top: 25px;">
-        <div class="mt-5">
-            <input type="text" class="form-control" [(ngModel)]="nombre" placeholder="Nombre Meta">
+        <div class="col">
+            <div class="input-group flex-nowrap">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-wrapping">Nombre</span>
+                </div>
+                <input type="text" class="form-control" [(ngModel)]="nombre" placeholder="Nombre Meta">
+            </div>
         </div>
-        <div class="col-md-3">
-            <input type="text" class="form-control" [(ngModel)]="descripcion" placeholder="Descripcion Meta">
+        <div class="col">
+            <div class="input-group flex-nowrap">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-wrapping">@</span>
+                </div>
+                <input type="text" class="form-control" [(ngModel)]="email" placeholder="email">
+            </div>
         </div>
-        <div class="col-md-3">
-            <p-dropdown [options]="cities" [(ngModel)]="selectedCity" placeholder="Select a City" optionLabel="name" [showClear]="true"></p-dropdown>
-            <p>Selected City: {{selectedCity ? selectedCity.name : 'none'}}</p>
-        </div>
-        <div class="col-md-3">
-            <input type="text" class="form-control" [(ngModel)]="nombre" placeholder="email">
-            <label for="medicion" [(ngModel)]="medicion">Medicion:</label>
-
-            <select name="medicion" id="medicion">
-                <option value="unidad">Unidad</option>
-                <option value="porcentaje">Porcentaje</option>
-            </select>
-        </div>
-        <div class="col-md-3">
-            <input type="text" class="form-control" [(ngModel)]="valor_inicial" placeholder="Valor Inicial">
-        </div>
-
-        <div class="col-md-3">
-            <label for="logro" [(ngModel)]="logro">Se desea:</label>
-
-            <select name="logro" id="logro">
-                <option value="aumentar">Aumentar</option>
-                <option value="disminuir">Disminuir</option>
-            </select>
-        </div>
-
-        <div class="col-md-3">
-            <label for="frecuencias" [(ngModel)]="frecuencia">Frecuencia:</label>
-
-            <select name="frecuencias" id="frecuencias">
-            <option value="bimestre">Bimestre</option>
-            <option value="semestre">Semestre</option>
-            <option value="ano">Año</option>
-        </select>
-        </div>
-        <div class="col-md-3">
-            <button type="button" (click)="CreateRecord()" [disabled]="!nombre" class="btn btn-primary">+
-          Crear Meta</button>
+        <div class="col">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="proyectos">Proyecto</label>
+                </div>
+                <select class="custom-select" [(ngModel)]="proyectos" name="proyectos" id="proyecto">
+                <option *ngFor="let proy of proyectos" [value]="proy.id">
+                  {{proy.nombre}}
+                </option>
+              </select>
+            </div>
         </div>
     </div>
-
     <div class="row" style="margin-top: 25px;">
-        <div class="col-md-3">
+        <div class="col">
+            <div class="input-group flex-nowrap">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-wrapping">Valor inicial</span>
+                </div>
+                <input type="text" class="form-control" [(ngModel)]="valor_inicial" placeholder="Valor Inicial">
+            </div>
+        </div>
+        <div class="col">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="medicion" [(ngModel)]="medicion">Medicion</label>
+                </div>
+                <select class="custom-select" name="medicion" id="medicion">
+                  <option value="unidad">Unidad</option>
+                  <option value="porcentaje">Porcentaje</option>
+              </select>
+            </div>
+        </div>
+        <div class="col">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="logro" [(ngModel)]="logro">Se desea</label>
+                </div>
+                <select class="custom-select" name="logro" id="logro">
+                    <option value="aumentar">Aumentar</option>
+                    <option value="disminuir">Disminuir</option>
+              </select>
+            </div>
+        </div>
+        <div class="col">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="frecuencias" [(ngModel)]="frecuencia">Frecuencia</label>
+                </div>
+                <select class="custom-select" name="frecuencias" id="frecuencias">
+                <option value="bimestre">Bimestre</option>
+                <option value="semestre">Semestre</option>
+                <option value="ano">Año</option>
+              </select>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 25px;">
+        <div class="col">
+            <button type="button" (click)="CreateRecord()" [disabled]="!nombre" class="btn btn-primary">+Crear Meta</button>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 25px;">
+        <div class="col-4">
             <div class="card" style="width: 18rem;" *ngFor="let item of metas">
                 <div class="card-body">
-                    <h5 class="card-title">{{item.nombre}</h5>
-                    <!--<h6 class="card-subtitle mb-2 text-muted">Age: {{item.email}} Years</h6>
-            <p class="card-text">Address: {{item.email}}</p>-->
+                    <h5 class="card-title">{{item.nombre}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Age: {{item.email}} Years</h6>
+                    <p class="card-text">Address: {{item.email}}</p>
 
                     <button class="card-link" (click)="RemoveRecord(item.id)">Delete</button>
                 </div>
