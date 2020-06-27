@@ -11,10 +11,10 @@ export class CrearMetaService {
     private firestore: AngularFirestore
   ) { }
 
-  crear_meta(record) {
+  crear_meta(record, recorID) {
     // return this.firestore.doc('Proyectos').collection('invitados').add(record);
     // MeNzLhC7oCgSMCQ0qjEg
-     return this.firestore.doc('Proyectos/MeNzLhC7oCgSMCQ0qjEg/invitados/KMcN50oZoyDaFIahHHBT').collection('/metas_creadas/').add(record);
+     return this.firestore.doc('Proyectos/' + recorID + '/invitados/KMcN50oZoyDaFIahHHBT').collection('/metas_creadas/').add(record);
    }
    leer_metas() {
      // return this.firestore.collection('Proyectos').snapshotChanges();

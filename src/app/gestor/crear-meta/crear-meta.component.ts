@@ -17,15 +17,12 @@ export class CrearMetaComponent implements OnInit {
   medicion: string;
   logro: string;
   frecuencia: string;
-  projectID: string;
-  nameProject: string;
   proyectos: Proyectos[];
-  constructor(private CrearMeta: CrearMetaService, private proyectosService: ProyectosService) {
-   }
+  opcSelect: string;
+  constructor(private CrearMeta: CrearMetaService, private proyectosService: ProyectosService) { }
 
   ngOnInit() {
     this.CrearMeta.leer_metas().subscribe(data => {
-
       this.metas = data.map(e => {
         return {
           id: e.payload.doc.id,
@@ -37,8 +34,7 @@ export class CrearMetaComponent implements OnInit {
           frecuencia: e.payload.doc.data()['frecuencia'],
           descripcion: e.payload.doc.data()['descripcion'],
         };
-      })
-      console.log(this.nombre);
+      });
     });
 
     this.proyectosService.lee_proyecto().subscribe(data => {
@@ -53,8 +49,10 @@ export class CrearMetaComponent implements OnInit {
 
   CreateRecord() {
     let record = {};
+    let recordID = {};
+    recordID = this.proyectos.push();
     record['nombre'] = this.nombre;
-    this.CrearMeta.crear_meta(record).then(resp => {
+    this.CrearMeta.crear_meta(record, recordID).then(resp => {
       this.nombre = "";
       console.log(resp);
     })
