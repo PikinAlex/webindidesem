@@ -55,6 +55,7 @@ import { VerifyEmailComponent } from './admin/verify-email/verify-email.componen
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { EvolucionMetaComponent } from './gestor/evolucion-meta/evolucion-meta.component';
 const routes: Routes = [
   {path:'', component: IndexComponent},
   {path:'iniciar-sesion', component: LoginComponent},
@@ -156,6 +157,7 @@ const routes: Routes = [
     RegisterComponent,
     LoginComponent,
     VerifyEmailComponent,
+    EvolucionMetaComponent,
 
 
   ],
