@@ -50,7 +50,7 @@ export class CrearMetaComponent implements OnInit {
   CreateRecord() {
     let record = {};
     let recordID = {};
-    recordID = this.proyectos.push();
+    recordID = this.proyectos;
     record['nombre'] = this.nombre;
     this.CrearMeta.crear_meta(record, recordID).then(resp => {
       this.nombre = "";

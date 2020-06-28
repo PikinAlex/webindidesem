@@ -20,6 +20,7 @@
                 <input type="text" class="form-control" [(ngModel)]="email" placeholder="email">
             </div>
         </div>
+        
         <div class="col">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -77,6 +78,22 @@
             </div>
         </div>
     </div>
+    <div class="row" style="margin-top: 25px;">
+        <div class="col">
+            <button type="button" (click)="CreateRecord()" [disabled]="!nombre" class="btn btn-primary">+Añadir Evolucion</button>
+        </div>
+    </div>
+    <!--Evolucion-->
+    <div class="card" style="width: 18rem;" *ngFor="let item of metas">
+        <div class="card-body">
+            <h5 class="card-title">{{item.nombre}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Age: {{item.email}} Years</h6>
+            <p class="card-text">Address: {{item.email}}</p>
+
+            <button class="card-link" (click)="RemoveRecord(item.id)">Delete</button>
+        </div>
+    </div>
+    
     <div class="row" style="margin-top: 25px;">
         <div class="col">
             <button type="button" (click)="CreateRecord()" [disabled]="!nombre" class="btn btn-primary">+Crear Meta</button>
