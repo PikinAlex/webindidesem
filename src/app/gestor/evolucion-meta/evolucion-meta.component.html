@@ -1,1 +1,51 @@
-<p>evolucion-meta works!</p>
+<div class="container">
+    <h1 style="margin-top: 25px;">
+        {{title}}
+    </h1>
+
+    <div class="row" style="margin-top: 25px;">
+        <div class="col">
+            <div class="input-group flex-nowrap">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-wrapping">Nombre</span>
+                </div>
+                <input type="text" class="form-control" [(ngModel)]="nombre" placeholder="Nombre Evolucion">
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="proyectos">Proyecto</label>
+            </div>
+            <select class="custom-select" [(ngModel)]="metas" name="metas" id="meta">
+            <option *ngFor="let proy of metas" [value]="proy.id">
+              {{proy.nombre}}
+            </option>
+          </select>
+        </div>
+    </div>
+ 
+    <div class="row" style="margin-top: 25px;">
+        <div class="col">
+            <button type="button" (click)="CreateRecord()" [disabled]="!nombre" class="btn btn-primary">+Añadir Evolucion</button>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 25px;">
+        <div class="col-4">
+            <div class="card" style="width: 18rem;" *ngFor="let item of evolucion">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.nombre}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Age: {{item.email}} Years</h6>
+                    <p class="card-text">Address: {{item.email}}</p>
+
+                    <button class="card-link" (click)="RemoveRecord(item.id)">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

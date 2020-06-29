@@ -76,6 +76,10 @@ const routes: Routes = [
       component: MetasCumplidasComponent
     },
     {
+      path: 'evolucion-metas',
+      component: EvolucionMetaComponent
+    },
+    {
       path: 'crear-meta',
       component: CrearMetaComponent
     },

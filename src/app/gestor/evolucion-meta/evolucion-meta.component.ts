@@ -7,28 +7,18 @@ import { EvolucionMetaService } from '../../shared/services/evolucion-meta.servi
   styleUrls: ['./evolucion-meta.component.css']
 })
 export class EvolucionMetaComponent implements OnInit {
-  title = 'Nueva Meta';
-  metas: any;
+  title = 'Evolucion Meta';
+  evolucion: any;
   nombre: string;
-  email: string;
-  valor_inicial: string;
-  medicion: string;
-  logro: string;
-  frecuencia: string;
   constructor(private Evolucionmeta: EvolucionMetaService) { }
 
   ngOnInit() {
     this.Evolucionmeta.leer_evolucion().subscribe(data => {
-      this.metas = data.map(e => {
+      this.evolucion = data.map(e => {
         return {
           id: e.payload.doc.id,
           isEdit: false,
           nombre: e.payload.doc.data()['nombre'],
-          medicion: e.payload.doc.data()['medicion'],
-          valor_inicial: e.payload.doc.data()['valor_inicial'],
-          logro: e.payload.doc.data()['logro'],
-          frecuencia: e.payload.doc.data()['frecuencia'],
-          descripcion: e.payload.doc.data()['descripcion'],
         };
       });
     });
