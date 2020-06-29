@@ -1,4 +1,4 @@
 export class Proyectos {
- id: string;
- nombre: string;
+ idP: string;
+ nombreP: string;
 }

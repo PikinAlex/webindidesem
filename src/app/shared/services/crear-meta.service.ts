@@ -1,20 +1,19 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase';
-
 @Injectable({
   providedIn: 'root'
 })
 export class CrearMetaService {
 
   constructor(
-    private firestore: AngularFirestore
-  ) { }
+    private firestore: AngularFirestore,
+  ) {}
 
-  crear_meta(record, recorID) {
+  crear_meta(recordID, record) {
     // return this.firestore.doc('Proyectos').collection('invitados').add(record);
     // MeNzLhC7oCgSMCQ0qjEg
-     return this.firestore.doc('Proyectos/' + recorID + '/invitados/areeq02Ix4rNPWgZ9rvN').collection('/metas_creadas/').add(record);
+     return this.firestore.doc('Proyectos/' + recordID + '/invitados/areeq02Ix4rNPWgZ9rvN').collection('/metas_creadas/').add(record);
    }
    leer_metas() {
      // return this.firestore.collection('Proyectos').snapshotChanges();
