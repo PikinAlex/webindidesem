@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { firestore } from 'firebase';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,6 +18,9 @@ export class CrearMetaService {
      // return this.firestore.collection('Proyectos').snapshotChanges();
      // return this.firestore.doc('Proyectos/MeNzLhC7oCgSMCQ0qjEg').collection('/invitados/').snapshotChanges();
      return this.firestore.doc('Proyectos/' + recordID + '/invitados/areeq02Ix4rNPWgZ9rvN').collection('/metas_creadas/').snapshotChanges();
+   }
+   getMetas(recordID) {
+     return this.firestore.collection('Proyectos/' + recordID + '/invitados/areeq02Ix4rNPWgZ9rvN/metas_creadas/').snapshotChanges();
    }
    actualizar_meta(recordID, record) {
     // this.firestore.doc('Proyectos/' + recordID).update(record);
