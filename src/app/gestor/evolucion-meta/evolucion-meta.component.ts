@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { EvolucionMetaService } from '../../shared/services/evolucion-meta.service';
-
+import { Proyectos } from './../../shared/models/proyectos';
+import { ProyectosService } from '../../shared/services/proyectos.service';
+import { CrearMetaService } from '../../shared/services/crear-meta.service';
+import { Metas } from '../../shared/models/metas';
 @Component({
   selector: 'app-evolucion-meta',
   templateUrl: './evolucion-meta.component.html',
@@ -10,7 +13,14 @@ export class EvolucionMetaComponent implements OnInit {
   title = 'Evolucion Meta';
   evolucion: any;
   nombre: string;
-  constructor(private Evolucionmeta: EvolucionMetaService) { }
+  proyectos: Proyectos[];
+  idProy: string;
+  metas: Metas[];
+  idMeta: string;
+  constructor(
+    private Evolucionmeta: EvolucionMetaService,
+    private proyectosService: ProyectosService,
+    private CrearMeta: CrearMetaService) { }
 
   ngOnInit() {
     this.Evolucionmeta.leer_evolucion().subscribe(data => {
@@ -18,16 +28,46 @@ export class EvolucionMetaComponent implements OnInit {
         return {
           id: e.payload.doc.id,
           isEdit: false,
-          nombre: e.payload.doc.data()['nombre'],
+          nombre: e.payload.doc.data()['nombre_meta'],
         };
+      });
+    });
+
+    this.proyectosService.lee_proyecto().subscribe(data => {
+      this.proyectos = data.map(e => {
+        return {
+          idP: e.payload.doc.id,
+          nombreP: e.payload.doc.data()['nombre_proyecto'],
+        } as Proyectos;
       });
     });
   }
 
+  mostrarMetas() {
+    this.CrearMeta.leer_metas(this.idProy).subscribe(data => {
+      this.metas = data.map(e => {
+        return {
+          idM: e.payload.doc.id,
+          nombreM: e.payload.doc.data()['nombre_meta']
+        }as Metas;
+      });
+    });
+  }
+
+  cambioProyecto(value: string) {
+    this.idProy = value;
+    this.CrearMeta.leer_metas(this.idProy);
+  }
+
+  cambioMeta(value2: string) {
+    this.idMeta = value2;
+  }
+
   CreateRecord() {
     let record = {};
+    let recordID = this.idProy;
     record['nombre'] = this.nombre;
-    this.Evolucionmeta.añadir_evolucion(record).then(resp => {
+    this.Evolucionmeta.añadir_evolucion(recordID, record).then(resp => {
       this.nombre = "";
       console.log(resp);
     })

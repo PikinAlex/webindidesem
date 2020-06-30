@@ -10,10 +10,10 @@ export class EvolucionMetaService {
     private firestore: AngularFirestore
   ) { }
 
-  añadir_evolucion(record) {
+  añadir_evolucion(recordID, record) {
     // return this.firestore.doc('Proyectos').collection('invitados').add(record);
     // MeNzLhC7oCgSMCQ0qjEg
-     return this.firestore.doc('Proyectos/MeNzLhC7oCgSMCQ0qjEg/invitados/KMcN50oZoyDaFIahHHBT/metas_creadas/faltaid').collection('/evolucion/').add(record);
+     return this.firestore.doc('Proyectos/' + recordID +'/invitados/KMcN50oZoyDaFIahHHBT/metas_creadas/faltaid').collection('/evolucion/').add(record);
    }
    leer_evolucion() {
      // return this.firestore.collection('Proyectos').snapshotChanges();

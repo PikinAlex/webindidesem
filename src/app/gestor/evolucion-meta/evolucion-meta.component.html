@@ -12,21 +12,34 @@
                 <input type="text" class="form-control" [(ngModel)]="nombre" placeholder="Nombre Evolucion">
             </div>
         </div>
-    </div>
-
-    <div class="col">
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <label class="input-group-text" for="proyectos">Proyecto</label>
+        <div class="col">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="proyectos">Proyecto</label>
+                </div>
+                <select class="custom-select" #selectProyecto [(ngModel)]="proyectos" (change)="cambioProyecto(selectProyecto.value)" name="metas" id="meta">
+              <option *ngFor="let proy of proyectos" [value]="proy.idP">
+                {{proy.nombreP}}
+              </option>
+            </select>
             </div>
-            <select class="custom-select" [(ngModel)]="metas" name="metas" id="meta">
-            <option *ngFor="let proy of metas" [value]="proy.id">
-              {{proy.nombre}}
+        </div>
+        <div class="col">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="proyectos">Meta</label>
+                </div>
+                <select class="custom-select" #selectMeta [(ngModel)]="metas" (change)="cambioMeta(selectMeta.value)" (click)="mostrarMetas()" name="metas" id="meta">
+            <option *ngFor="let meta of metas" [value]="meta.idM">
+              {{meta.nombreM}}
             </option>
           </select>
+            </div>
         </div>
     </div>
- 
+
+
+
     <div class="row" style="margin-top: 25px;">
         <div class="col">
             <button type="button" (click)="CreateRecord()" [disabled]="!nombre" class="btn btn-primary">+Añadir Evolucion</button>
@@ -48,4 +61,3 @@
     </div>
 
 </div>
-

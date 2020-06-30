@@ -19,10 +19,24 @@ export class CrearMetaComponent implements OnInit {
   frecuencia: string;
   proyectos: Proyectos[];
   idProy: string;
-  constructor(private CrearMeta: CrearMetaService, private proyectosService: ProyectosService) { }
+  constructor(private CrearMeta: CrearMetaService,
+              private proyectosService: ProyectosService) { }
 
   ngOnInit() {
-    this.CrearMeta.leer_metas().subscribe(data => {
+    this.proyectosService.lee_proyecto().subscribe(data => {
+      this.proyectos = data.map(e => {
+        return {
+          idP: e.payload.doc.id,
+          nombreP: e.payload.doc.data()['nombre_proyecto'],
+        } as Proyectos;
+      });
+    });
+  }
+
+  cambioProyecto(value: string) {
+    this.idProy = value;
+    this.CrearMeta.leer_metas(this.idProy).subscribe(data => {
+      console.log(this.idProy);
       this.metas = data.map(e => {
         return {
           id: e.payload.doc.id,
@@ -37,24 +51,11 @@ export class CrearMetaComponent implements OnInit {
       });
     });
 
-    this.proyectosService.lee_proyecto().subscribe(data => {
-      this.proyectos = data.map(e => {
-        return {
-          idP: e.payload.doc.id,
-          nombreP: e.payload.doc.data()['nombre_proyecto'],
-        } as Proyectos;
-      });
-    });
-  }
-
-  cambioProyecto(value: string) {
-    this.idProy = value;
   }
 
   CreateRecord() {
     let record = {};
-    let recordID = this.idProy;                 // id del proyecto
-    console.log(recordID);
+    let recordID = this.idProy;
     record['nombre'] = this.nombre;
     this.CrearMeta.crear_meta(recordID, record).then(resp => {
       this.nombre = "";

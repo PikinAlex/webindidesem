@@ -15,10 +15,10 @@ export class CrearMetaService {
     // MeNzLhC7oCgSMCQ0qjEg
      return this.firestore.doc('Proyectos/' + recordID + '/invitados/areeq02Ix4rNPWgZ9rvN').collection('/metas_creadas/').add(record);
    }
-   leer_metas() {
+   leer_metas(recordID) {
      // return this.firestore.collection('Proyectos').snapshotChanges();
      // return this.firestore.doc('Proyectos/MeNzLhC7oCgSMCQ0qjEg').collection('/invitados/').snapshotChanges();
-     return this.firestore.doc('Proyectos/MeNzLhC7oCgSMCQ0qjEg/invitados/areeq02Ix4rNPWgZ9rvN').collection('/metas_creadas/').snapshotChanges();
+     return this.firestore.doc('Proyectos/' + recordID + '/invitados/areeq02Ix4rNPWgZ9rvN').collection('/metas_creadas/').snapshotChanges();
    }
    actualizar_meta(recordID, record) {
     // this.firestore.doc('Proyectos/' + recordID).update(record);
