@@ -9,7 +9,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping">Nombre</span>
                 </div>
-                <input type="text" class="form-control" [(ngModel)]="nombre" placeholder="Nombre Meta">
+                <input type="text" class="form-control" [(ngModel)]="nombre_meta" placeholder="Nombre Meta">
             </div>
         </div>
         <div class="col">
@@ -80,13 +80,13 @@
     </div>
     <div class="row" style="margin-top: 25px;">
         <div class="col">
-            <button type="button" (click)="CreateRecord()" [disabled]="!nombre" class="btn btn-primary">+Añadir Evolucion</button>
+            <button type="button" (click)="CreateRecord()" [disabled]="!nombre_meta" class="btn btn-primary">+Añadir Evolucion</button>
         </div>
     </div>
     <!--Evolucion-->
-    <div class="card" style="width: 18rem;" *ngFor="let item of metas">
+    <div class="card" style="width: 18rem;" [(ngModel)]="metas" *ngFor="let item of metas">
         <div class="card-body">
-            <h5 class="card-title">{{item.nombre}}</h5>
+            <h5 class="card-title">{{item.nombreM}}</h5>
             <h6 class="card-subtitle mb-2 text-muted">Age: {{item.email}} Years</h6>
             <p class="card-text">Address: {{item.email}}</p>
 
@@ -96,7 +96,7 @@
 
     <div class="row" style="margin-top: 25px;">
         <div class="col">
-            <button type="button" (click)="CreateRecord()" [disabled]="!nombre" class="btn btn-primary">+Crear Meta</button>
+            <button type="button" (click)="CreateRecord()" [disabled]="!nombre_meta" class="btn btn-primary">+Crear Meta</button>
         </div>
     </div>
     <div class="row" style="margin-top: 25px;">

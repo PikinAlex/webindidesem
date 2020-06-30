@@ -11,7 +11,7 @@ import { ProyectosService } from '../../shared/services/proyectos.service';
 export class CrearMetaComponent implements OnInit {
   title = 'Nueva Meta';
   metas: any;
-  nombre: string;
+  nombre_meta: string;
   email: string;
   valor_inicial: string;
   medicion: string;
@@ -41,7 +41,7 @@ export class CrearMetaComponent implements OnInit {
         return {
           id: e.payload.doc.id,
           isEdit: false,
-          nombre: e.payload.doc.data()['nombre'],
+          nombre: e.payload.doc.data()['nombre_meta'],
           medicion: e.payload.doc.data()['medicion'],
           valor_inicial: e.payload.doc.data()['valor_inicial'],
           logro: e.payload.doc.data()['logro'],
@@ -56,9 +56,9 @@ export class CrearMetaComponent implements OnInit {
   CreateRecord() {
     let record = {};
     let recordID = this.idProy;
-    record['nombre'] = this.nombre;
+    record['nombre_meta'] = this.nombre_meta;
     this.CrearMeta.crear_meta(recordID, record).then(resp => {
-      this.nombre = "";
+      this.nombre_meta = "";
       console.log(resp);
     })
       .catch(error => {

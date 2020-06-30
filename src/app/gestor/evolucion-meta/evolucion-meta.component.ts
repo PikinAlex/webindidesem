@@ -40,6 +40,7 @@ export class EvolucionMetaComponent implements OnInit {
           nombreP: e.payload.doc.data()['nombre_proyecto'],
         } as Proyectos;
       });
+      console.log(this.proyectos);
     });
   }
 
@@ -51,12 +52,12 @@ export class EvolucionMetaComponent implements OnInit {
           nombreM: e.payload.doc.data()['nombre_meta']
         }as Metas;
       });
+      console.log(this.metas);
     });
   }
 
   cambioProyecto(value: string) {
     this.idProy = value;
-    this.CrearMeta.leer_metas(this.idProy);
   }
 
   cambioMeta(value2: string) {
