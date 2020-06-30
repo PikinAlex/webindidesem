@@ -17,7 +17,6 @@ export class EvolucionMetaComponent implements OnInit {
   idProy: string;
   metas: Metas[];
   idMeta: string;
-  r:string;
   constructor(
     private Evolucionmeta: EvolucionMetaService,
     private proyectosService: ProyectosService,
@@ -29,7 +28,7 @@ export class EvolucionMetaComponent implements OnInit {
         return {
           id: e.payload.doc.id,
           isEdit: false,
-          nombre: e.payload.doc.data()['nombre_evolucion'],
+          nombre: e.payload.doc.data()['nombre_meta'],
         };
       });
     });
@@ -43,13 +42,10 @@ export class EvolucionMetaComponent implements OnInit {
       });
       console.log(this.proyectos);
     });
+  }
 
-<<<<<<< HEAD
   mostrarMetas() {
     this.CrearMeta.getMetas(this.idProy).subscribe(data => {
-=======
-    this.CrearMeta.leer_metas(this.idProy).subscribe(data => {
->>>>>>> a740d3e2d3eb1aaacefdf10c6cbb098d83232f40
       this.metas = data.map(e => {
         return {
           idM: e.payload.doc.id,
@@ -58,7 +54,6 @@ export class EvolucionMetaComponent implements OnInit {
       });
       console.log(this.metas);
     });
-
   }
 
   cambioProyecto(value: string) {
