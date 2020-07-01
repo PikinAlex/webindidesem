@@ -17,10 +17,15 @@ export class CrearProyectoComponent implements OnInit {
   descripcion: string;
   usuario: string;
   user: User;
+  emaiil:string;
   constructor(private proyectosService: ProyectosService,
               public authService: AuthService) { }
 
   ngOnInit() {
+    this.authService.getUserAuth().subscribe(user => {
+      this.emaiil = user.email;
+
+    })
     this.proyectosService.lee_proyecto().subscribe(data => {
       this.proyectos = data.map(e => {
         return {
@@ -38,7 +43,7 @@ export class CrearProyectoComponent implements OnInit {
     let record = {};
     record['nombre_proyecto'] = this.nombre_proyecto;
     record['descripcion'] = this.descripcion;
-    record['usuario'] = this.usuario;
+    record['usuario'] = this.emaiil;
     this.proyectosService.crear_proyecto(record).then(resp => {
       this.nombre_proyecto = "";
       this.descripcion = "";

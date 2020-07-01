@@ -115,4 +115,7 @@ export  class  AuthService {
       this.router.navigate(['iniciar-sesion']);
     });
   }
+  getUserAuth(){
+    return this.afAuth.authState
+  }
 }
