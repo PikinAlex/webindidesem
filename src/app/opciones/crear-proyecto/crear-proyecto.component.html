@@ -3,6 +3,10 @@
       {{title}}
     </h1>
     <input type="titulo" name="titulo" class="form-control" required minlength="8" [(ngModel)]="nombre_proyecto" placeholder="nombre">
-    <input type="descripcion" name="descripcion" class="form-control" required minlength="8" [(ngModel)]="descripcion" placeholder="descripcion">   
-    <button pButton type="button" (click)="CreateRecord()" [disabled]="!nombre_proyecto" label="Crear nuevo proyecto"class="ui-button-rounded ui-button-success" style="min-width: 300px !important;"></button>  
+    <input type="descripcion" name="descripcion" class="form-control" required minlength="8" [(ngModel)]="descripcion" placeholder="descripcion"> 
+     
+    <div *ngIf="authService.userData as user"> 
+        <p>Usuario: <strong>{{user.email}}</strong></p>
+    </div>    
+    <button class="btn btn-primary" pButton type="button" (click)="CreateRecord()" [disabled]="!nombre_proyecto" label="Crear nuevo proyecto"  style="min-width: 300px !important;"></button>  
   </div>
