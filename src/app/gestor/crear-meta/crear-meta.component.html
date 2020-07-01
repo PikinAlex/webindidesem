@@ -27,6 +27,7 @@
                     <label class="input-group-text" for="proyectos">Proyecto</label>
                 </div>
                 <select class="custom-select" #selectProyecto (change)="cambioProyecto(selectProyecto.value)" (click)="mostrarMetas()" name="proyectos" id="selectProyecto">
+                  <option></option>
                 <option *ngFor="let proy of proyectos" [value]="proy.idP">
                   {{proy.nombreP}}
                 </option>
@@ -46,34 +47,39 @@
         <div class="col">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <label class="input-group-text" for="medicion" [(ngModel)]="medicion">Medicion</label>
+                    <label class="input-group-text" for="medicion">Medicion</label>
                 </div>
-                <select class="custom-select" name="medicion" id="medicion">
-                  <option value="unidad">Unidad</option>
-                  <option value="porcentaje">Porcentaje</option>
+                <select class="custom-select" #selectMedicion (change)="cambioMedicion(selectMedicion.value)" name="medicion" id="medicion">
+                  <option></option>
+                  <option *ngFor="let med of medicion" [value]="med">
+                    {{med}}
+                  </option>
               </select>
             </div>
         </div>
         <div class="col">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <label class="input-group-text" for="logro" [(ngModel)]="logro">Se desea</label>
+                    <label class="input-group-text" for="logro">Se desea</label>
                 </div>
-                <select class="custom-select" name="logro" id="logro">
-                    <option value="aumentar">Aumentar</option>
-                    <option value="disminuir">Disminuir</option>
+                <select class="custom-select" #selectLogro (change)="cambioLogro(selectLogro.value)" name="logro" id="logro">
+                  <option></option>
+                    <option *ngFor="let logro of logros" [value]="logro">
+                      {{logro}}
+                    </option>
               </select>
             </div>
         </div>
         <div class="col">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <label class="input-group-text" for="frecuencias" [(ngModel)]="frecuencia">Frecuencia</label>
+                    <label class="input-group-text" for="frecuencias">Frecuencia</label>
                 </div>
-                <select class="custom-select" name="frecuencias" id="frecuencias">
-                <option value="bimestre">Bimestre</option>
-                <option value="semestre">Semestre</option>
-                <option value="ano">Año</option>
+                <select class="custom-select" #selectFrecuencia (change)="cambioFrecuencia(selectFrecuencia.value)" name="frecuencias" id="frecuencias">
+                  <option></option>
+                <option *ngFor="let frec of frecuencias" [value]="frec">
+                  {{frec}}
+                </option>
               </select>
             </div>
         </div>
@@ -83,33 +89,24 @@
             <button type="button" (click)="CreateRecord()" [disabled]="!nombre_meta" class="btn btn-primary">+Añadir Evolucion</button>
         </div>
     </div>
-    <!--Evolucion-->
-    <div class="card" style="width: 18rem;" [(ngModel)]="metas" *ngFor="let item of metas">
-        <div class="card-body">
-            <h5 class="card-title">{{item.nombreM}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Age: {{item.nombreM}} Years</h6>
-            <!--<p class="card-text">Address: {{item.email}}</p>-->
-
-            <button class="card-link" (click)="RemoveRecord(item.idM)">Delete</button>
-        </div>
-    </div>
-
     <div class="row" style="margin-top: 25px;">
         <div class="col">
             <button type="button" (click)="CreateRecord()" [disabled]="!nombre_meta" class="btn btn-primary">+Crear Meta</button>
         </div>
     </div>
-    <!--<div class="row" style="margin-top: 25px;">
+    <div class="row" style="margin-top: 25px;">
         <div class="col-4">
             <div class="card" style="width: 18rem;" *ngFor="let item of metas">
                 <div class="card-body">
                     <h5 class="card-title">{{item.nombreM}}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Age: {{item.email}} Years</h6>
-                    <p class="card-text">Address: {{item.email}}</p>
-
-                    <button class="card-link" (click)="RemoveRecord(item.id)">Delete</button>
+                    <h6 class="card-subtitle mb-2 text-muted">Email: {{item.emailM}}</h6>
+                    <p class="card-text">Valor Inicial: {{item.valorInicialM}}</p>
+                    <p class="card-text">Medicion: {{item.medicionM}}</p>
+                    <p class="card-text">Logro: {{item.logroM}}</p>
+                    <p class="card-text">Frecuencia: {{item.frecuenciaM}}</p>
+                    <button type="button" class="card-link" (click)="RemoveRecord(item.idM)">-Delete</button>
                 </div>
             </div>
         </div>
-    </div>-->
+    </div>
 </div>

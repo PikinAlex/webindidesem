@@ -12,7 +12,7 @@ export class CrearMetaService {
   crear_meta(recordID, record) {
     // return this.firestore.doc('Proyectos').collection('invitados').add(record);
     // MeNzLhC7oCgSMCQ0qjEg
-     return this.firestore.doc('Proyectos/' + recordID + '/invitados/areeq02Ix4rNPWgZ9rvN').collection('/metas_creadas/').add(record);
+    return this.firestore.doc('Proyectos/' + recordID + '/invitados/areeq02Ix4rNPWgZ9rvN').collection('/metas_creadas/').add(record);
    }
    leer_metas(recordID) {
      // return this.firestore.collection('Proyectos').snapshotChanges();

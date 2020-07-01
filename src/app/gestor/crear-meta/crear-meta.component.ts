@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CrearMetaService } from '../../shared/services/crear-meta.service';
 import { ProyectosService } from '../../shared/services/proyectos.service';
 import { Metas } from '../../shared/models/metas';
+import { analytics } from 'firebase';
 @Component({
   selector: 'app-crear-meta',
   templateUrl: './crear-meta.component.html',
@@ -14,13 +15,16 @@ export class CrearMetaComponent implements OnInit {
   nombre_meta: string;
   email: string;
   valor_inicial: string;
-  medicion: string;
-  logro: string;
-  frecuencia: string;
   proyectos: Proyectos[];
   idProy: string;
   metas: Metas[];
   idMeta: string;
+  valMed: string;
+  valLogro: string;
+  valFrec: string;
+  medicion: any;
+  logros: any;
+  frecuencias: any;
   constructor(private CrearMeta: CrearMetaService,
               private proyectosService: ProyectosService) { }
 
@@ -40,6 +44,9 @@ export class CrearMetaComponent implements OnInit {
       });
     });*/
     this.mostrarProyecto();
+    this.medicion = ['Unidad', 'Porcentaje'];
+    this.logros = ['Aumentar', 'Disminuir'];
+    this.frecuencias = ['Mes', 'Bimestre', 'Semestre', 'Año']
   }
 
   mostrarProyecto() {
@@ -59,10 +66,14 @@ export class CrearMetaComponent implements OnInit {
       this.metas = data.map(e => {
         return {
           idM: e.payload.doc.id,
-          nombreM: e.payload.doc.data()['nombre_meta']
+          nombreM: e.payload.doc.data()['nombre_meta'],
+          emailM: e.payload.doc.data()['email'],
+          valorInicialM: e.payload.doc.data()['valor_inicial'],
+          medicionM: e.payload.doc.data()['medicion'],
+          logroM: e.payload.doc.data()['logro'],
+          frecuenciaM: e.payload.doc.data()['frecuencia']
         }as Metas;
       });
-      console.log(this.metas);
     });
   }
 
@@ -74,12 +85,36 @@ export class CrearMetaComponent implements OnInit {
     this.idMeta = value2;
   }
 
+  cambioMedicion(value3: string) {
+    this.valMed = value3;
+  }
+
+  cambioLogro(value4: string) {
+    this.valLogro = value4;
+  }
+
+  cambioFrecuencia(value5: string) {
+    this.valFrec = value5;
+  }
+
   CreateRecord() {
     let record = {};
     let recordID = this.idProy;
+    console.log(this.valMed);
     record['nombre_meta'] = this.nombre_meta;
+    record['email'] =  this.email;
+    record['valor_inicial'] = this.valor_inicial;
+    record['medicion'] = this.valMed;
+    record['logro'] = this.valLogro;
+    record['frecuencia'] = this.valFrec;
     this.CrearMeta.crear_meta(recordID, record).then(resp => {
       this.nombre_meta = "";
+      this.email="";
+      this.valor_inicial = "";
+      this.valMed = "";
+      this.valLogro = "";
+      this.valFrec = "";
+      console.log('meta creada');
       console.log(resp);
     })
       .catch(error => {

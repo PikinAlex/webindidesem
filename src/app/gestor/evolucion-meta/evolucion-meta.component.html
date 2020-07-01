@@ -18,6 +18,7 @@
                     <label class="input-group-text" for="proyectos">Proyecto</label>
                 </div>
                 <select class="custom-select" #selectProyecto (change)="cambioProyecto(selectProyecto.value)" (click)="mostrarMetas()" name="proyectos" id="proyecto">
+                  <option></option>
               <option *ngFor="let proy of proyectos" [value]="proy.idP">
                 {{proy.nombreP}}
               </option>
@@ -30,6 +31,7 @@
                     <label class="input-group-text" for="metas">Meta</label>
                 </div>
                 <select class="custom-select" #selectMeta (change)="cambioMeta(selectMeta.value)" name="metas" id="meta">
+                  <option></option>
             <option *ngFor="let meta of metas" [value]="meta.idM">
               {{meta.nombreM}}
             </option>
