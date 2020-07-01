@@ -33,6 +33,10 @@ export class EvolucionMetaComponent implements OnInit {
       });
     });
 
+    this.mostrarProyecto();
+  }
+
+  mostrarProyecto() {
     this.proyectosService.lee_proyecto().subscribe(data => {
       this.proyectos = data.map(e => {
         return {
@@ -45,7 +49,7 @@ export class EvolucionMetaComponent implements OnInit {
   }
 
   mostrarMetas() {
-    this.CrearMeta.getMetas(this.idProy).subscribe(data => {
+    this.CrearMeta.leer_metas(this.idProy).subscribe(data => {
       this.metas = data.map(e => {
         return {
           idM: e.payload.doc.id,
