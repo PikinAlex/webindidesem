@@ -33,7 +33,7 @@
                 </div>
                 <select class="custom-select" #selectInvitado (change)="cambioinvitado(selectInvitado.value)" (click)="mostrarMetas()" name="invitados" id="selectInvitado">
                   <option></option>
-                <option *ngFor="let proy of invitados" [value]="proy.idP">
+                <option *ngFor="let proy of invitados" [value]="proy.id">
                   {{proy.email}}
                 </option>
               </select>

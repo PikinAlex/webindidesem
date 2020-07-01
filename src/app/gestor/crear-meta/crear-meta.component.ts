@@ -64,7 +64,9 @@ export class CrearMetaComponent implements OnInit {
   }
 
   mostrarMetas() {
-    this.CrearMeta.leer_metas(this.idProy,this.idProy).subscribe(data => {
+    console.log(this.idProy);
+    console.log(this.idInvi);
+    this.CrearMeta.leer_metas(this.idProy,this.idInvi).subscribe(data => {
       this.metas = data.map(e => {
         return {
           idM: e.payload.doc.id,
@@ -116,7 +118,7 @@ export class CrearMetaComponent implements OnInit {
   CreateRecord() {
     let record = {};
     let recordID = this.idProy;
-    let recordID2 = this.idProy;
+    let recordID2 = this.idInvi;
     record['nombre_meta'] = this.nombre_meta;
     record['valor_inicial'] = this.valor_inicial;
     record['medicion'] = this.valMed;
@@ -136,7 +138,7 @@ export class CrearMetaComponent implements OnInit {
   }
   RemoveRecord(rowID) {
     let recordID = this.idProy;
-    let recordID2 = this.idProy;
+    let recordID2 = this.idInvi;
     this.CrearMeta.eliminar_meta(recordID,recordID2,rowID);
   }
 
