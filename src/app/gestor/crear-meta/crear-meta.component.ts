@@ -57,7 +57,6 @@ export class CrearMetaComponent implements OnInit {
           nombreP: e.payload.doc.data()['nombre_proyecto'],
         } as Proyectos;
       });
-      console.log(this.proyectos);
     });
   }
 
@@ -100,7 +99,6 @@ export class CrearMetaComponent implements OnInit {
   CreateRecord() {
     let record = {};
     let recordID = this.idProy;
-    console.log(this.valMed);
     record['nombre_meta'] = this.nombre_meta;
     record['email'] =  this.email;
     record['valor_inicial'] = this.valor_inicial;
@@ -114,7 +112,6 @@ export class CrearMetaComponent implements OnInit {
       this.valMed = "";
       this.valLogro = "";
       this.valFrec = "";
-      console.log('meta creada');
       console.log(resp);
     })
       .catch(error => {

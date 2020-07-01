@@ -16,11 +16,11 @@ export  class  AuthService {
 
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public afs: AngularFirestore,   // Inject Firestore service
-    public router: Router,  
+    public router: Router,
     public ngZone: NgZone,
-  
-  ) {    
-    /* Saving user data in localstorage when 
+
+  ) {
+    /* Saving user data in localstorage when
     logged in and setting up null when logged out */
     this.afAuth.authState.subscribe(user => {
       if (user) {
@@ -49,7 +49,7 @@ export  class  AuthService {
   SignUp(email, password) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        /* Call the SendVerificaitonMail() function when new user sign 
+        /* Call the SendVerificaitonMail() function when new user sign
         up and returns promise */
         this.SendVerificationMail();
         this.SetUserData(result.user);
@@ -88,11 +88,11 @@ export  class  AuthService {
     .then((result) => {
        this.ngZone.run(() => {
           this.router.navigate(['pantalla-principal']);
-        })
+        });
       this.SetUserData(result.user);
     }).catch((error) => {
-      window.alert(error)
-    })
+      window.alert(error);
+    });
   }
 
   SetUserData(user) {
@@ -103,16 +103,16 @@ export  class  AuthService {
       displayName: user.displayName,
       photoURL: user.photoURL,
       emailVerified: user.emailVerified
-    }
+    };
     return userRef.set(userData, {
       merge: true
-    })
+    });
   }
 
   SignOut() {
     return this.afAuth.auth.signOut().then(() => {
       localStorage.removeItem('user');
       this.router.navigate(['iniciar-sesion']);
-    })
+    });
   }
 }

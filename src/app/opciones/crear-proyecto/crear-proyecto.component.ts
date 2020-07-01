@@ -1,6 +1,9 @@
+import { auth } from 'firebase/app';
+import { User } from './../../auth/user';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Component, OnInit } from '@angular/core';
 import { ProyectosService } from '../../shared/services/proyectos.service';
-import { AuthService } from  '../../auth/auth.service';
+import { AuthService } from '../../auth/auth.service';
 @Component({
   selector: 'app-crear-proyecto',
   templateUrl: './crear-proyecto.component.html',
@@ -12,13 +15,13 @@ export class CrearProyectoComponent implements OnInit {
   proyectos: any;
   nombre_proyecto: string;
   descripcion: string;
-  usuario:string;
-  constructor(private ProyectosService: ProyectosService,
-    public authService: AuthService) { }
+  usuario: string;
+  user: User;
+  constructor(private proyectosService: ProyectosService,
+              public authService: AuthService) { }
 
   ngOnInit() {
-    this.ProyectosService.lee_proyecto().subscribe(data => {
-
+    this.proyectosService.lee_proyecto().subscribe(data => {
       this.proyectos = data.map(e => {
         return {
           id: e.payload.doc.id,
@@ -27,9 +30,7 @@ export class CrearProyectoComponent implements OnInit {
           descripcion: e.payload.doc.data()['descripcion'],
           usuario: e.payload.doc.data()['usuario'],
         };
-      })
-      console.log(this.proyectos);
-
+      });
     });
   }
 
@@ -38,7 +39,7 @@ export class CrearProyectoComponent implements OnInit {
     record['nombre_proyecto'] = this.nombre_proyecto;
     record['descripcion'] = this.descripcion;
     record['usuario'] = this.usuario;
-    this.ProyectosService.crear_proyecto(record).then(resp => {
+    this.proyectosService.crear_proyecto(record).then(resp => {
       this.nombre_proyecto = "";
       this.descripcion = "";
       this.usuario = "";
