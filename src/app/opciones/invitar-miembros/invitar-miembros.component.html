@@ -5,9 +5,23 @@
     </h1>
   
     <div class="row" style="margin-top: 25px;">
+      <div class="col">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="proyectos">Selecciona Proyecto</label>
+            </div>
+            <select class="custom-select" #selectProyecto (change)="cambioProyecto(selectProyecto.value)" (click)="mostrarinvitados()"  name="proyectos" id="selectProyecto">
+              <option></option>
+            <option *ngFor="let proy of proyectos" [value]="proy.idP">
+              {{proy.nombreP}}
+            </option>
+          </select>
+        </div>
+    </div>
       <div class="col-md-3">
         <input type="text" class="form-control" [(ngModel)]="email" placeholder="email">
       </div>
+      
       <div class="col-md-3">
         <button type="button" (click)="CreateRecord()" [disabled]="!email" class="btn btn-primary">+
           Invitar miembro al proyecto</button>
@@ -22,6 +36,7 @@
             <!--<h6 class="card-subtitle mb-2 text-muted">Age: {{item.email}} Years</h6>
             <p class="card-text">Address: {{item.email}}</p>-->
           
+
             <button class="card-link" (click)="RemoveRecord(item.id)">Eliminar Miembro</button>
           </div>
         </div>

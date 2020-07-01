@@ -10,16 +10,17 @@ export class InvitarService {
     private firestore: AngularFirestore
   ) { }
 
-  invitar(record) {
+  invitar(recordID,record) {
    // return this.firestore.doc('Proyectos').collection('invitados').add(record);
-    return this.firestore.doc('Proyectos/MeNzLhC7oCgSMCQ0qjEg').collection('/invitados/').add(record);
+    return this.firestore.doc('Proyectos/' + recordID).collection('/invitados/').add(record);
+
   }
-  lee_invitados() {
+  lee_invitados(recordID) {
     //return this.firestore.collection('Proyectos').snapshotChanges();
-    return this.firestore.doc('Proyectos/MeNzLhC7oCgSMCQ0qjEg').collection('/invitados/').snapshotChanges()
+    return this.firestore.doc('Proyectos/'+ recordID).collection('/invitados/').snapshotChanges()
   }
-  eliminar_invitado(record_id) {
+  eliminar_invitado(recordID,record_id) {
     //this.firestore.doc('Proyectos' + record_id).delete();
-    this.firestore.doc('Proyectos/MeNzLhC7oCgSMCQ0qjEg/invitados/'+record_id).delete();
+    this.firestore.doc('Proyectos/'+ recordID + '/invitados/'+record_id).delete();
   }
 }

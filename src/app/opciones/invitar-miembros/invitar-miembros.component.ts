@@ -1,19 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { InvitarService } from '../../shared/services/invitar.service';
+import { ProyectosService } from '../../shared/services/proyectos.service';
+import { Proyectos } from './../../shared/models/proyectos';
 @Component({
   selector: 'app-invitar-miembros',
   templateUrl: './invitar-miembros.component.html',
   styleUrls: ['./invitar-miembros.component.css']
 })
 export class InvitarMiembrosComponent implements OnInit {
-  title = 'Invitar al proyecto';
+  title = 'Invitar Al Proyecto';
 
   invitados: any;
   email: string;
-  constructor(private InvitarService: InvitarService) { }
+
+  proyectos: Proyectos[];
+  idProy: string;
+  constructor(private InvitarService: InvitarService, private proyectosService: ProyectosService) { }
 
   ngOnInit() {
-    this.InvitarService.lee_invitados().subscribe(data => {
+    /*this.InvitarService.lee_invitados().subscribe(data => {
 
       this.invitados = data.map(e => {
         return {
@@ -23,13 +28,40 @@ export class InvitarMiembrosComponent implements OnInit {
         };
       })
       console.log(this.invitados);
+    });*/
+    this.mostrarProyecto();
+  }
+  mostrarProyecto() {
+    this.proyectosService.lee_proyecto().subscribe(data => {
+      this.proyectos = data.map(e => {
+        return {
+          idP: e.payload.doc.id,
+          nombreP: e.payload.doc.data()['nombre_proyecto'],
+        } as Proyectos;
+      });
     });
   }
-
+  mostrarinvitados() {
+    this.InvitarService.lee_invitados(this.idProy).subscribe(data => {
+      this.invitados = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          isEdit: false,
+          email: e.payload.doc.data()['email'],
+        };
+      });
+    });
+  }
+  
+  cambioProyecto(value: string) {
+    this.idProy = value;
+  }
   CreateRecord() {
     let record = {};
+    let recordID= this.idProy;
     record['email'] = this.email;
-    this.InvitarService.invitar(record).then(resp => {
+    console.log(recordID);
+    this.InvitarService.invitar(recordID,record).then(resp => {
       this.email = "";
       console.log(resp);
     })
@@ -38,7 +70,8 @@ export class InvitarMiembrosComponent implements OnInit {
       });
   }
   RemoveRecord(rowID) {
-    this.InvitarService.eliminar_invitado(rowID);
+    let recordID= this.idProy;
+    this.InvitarService.eliminar_invitado(recordID,rowID);
   }
 
   EditRecord(record) {

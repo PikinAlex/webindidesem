@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CrearMetaService } from '../../shared/services/crear-meta.service';
 import { ProyectosService } from '../../shared/services/proyectos.service';
 import { Metas } from '../../shared/models/metas';
+import { InvitarService } from '../../shared/services/invitar.service';
 import { analytics } from 'firebase';
 @Component({
   selector: 'app-crear-meta',
@@ -25,8 +26,10 @@ export class CrearMetaComponent implements OnInit {
   medicion: any;
   logros: any;
   frecuencias: any;
+  idInvi: string;
+  invitados: any;
   constructor(private CrearMeta: CrearMetaService,
-              private proyectosService: ProyectosService) { }
+              private proyectosService: ProyectosService,private InvitarService: InvitarService) { }
 
   ngOnInit() {
     /*this.CrearMeta.leer_metas(this.idProy).subscribe(data => {
@@ -61,7 +64,7 @@ export class CrearMetaComponent implements OnInit {
   }
 
   mostrarMetas() {
-    this.CrearMeta.leer_metas(this.idProy).subscribe(data => {
+    this.CrearMeta.leer_metas(this.idProy,this.idProy).subscribe(data => {
       this.metas = data.map(e => {
         return {
           idM: e.payload.doc.id,
@@ -76,8 +79,23 @@ export class CrearMetaComponent implements OnInit {
     });
   }
 
+  mostrarinvitados() {
+    this.InvitarService.lee_invitados(this.idProy).subscribe(data => {
+      this.invitados = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          isEdit: false,
+          email: e.payload.doc.data()['email'],
+        };
+      });
+    });
+  }
+
   cambioProyecto(value: string) {
     this.idProy = value;
+  }
+  cambioinvitado(value: string) {
+    this.idInvi = value;
   }
 
   cambioMeta(value2: string) {
@@ -99,13 +117,14 @@ export class CrearMetaComponent implements OnInit {
   CreateRecord() {
     let record = {};
     let recordID = this.idProy;
+    let recordID2 = this.idProy;
     record['nombre_meta'] = this.nombre_meta;
     record['email'] =  this.email;
     record['valor_inicial'] = this.valor_inicial;
     record['medicion'] = this.valMed;
     record['logro'] = this.valLogro;
     record['frecuencia'] = this.valFrec;
-    this.CrearMeta.crear_meta(recordID, record).then(resp => {
+    this.CrearMeta.crear_meta(recordID,recordID2,record).then(resp => {
       this.nombre_meta = "";
       this.email="";
       this.valor_inicial = "";
@@ -119,7 +138,9 @@ export class CrearMetaComponent implements OnInit {
       });
   }
   RemoveRecord(rowID) {
-    this.CrearMeta.eliminar_meta(rowID);
+    let recordID = this.idProy;
+    let recordID2 = this.idProy;
+    this.CrearMeta.eliminar_meta(recordID,recordID2,rowID);
   }
 
   EditRecord(record) {
