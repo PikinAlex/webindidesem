@@ -26,7 +26,7 @@
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="proyectos">Proyecto</label>
                 </div>
-                <select class="custom-select" #selectProyecto [(ngModel)]="proyectos" (change)="cambioProyecto(selectProyecto.value)" name="proyectos" id="selectProyecto">
+                <select class="custom-select" #selectProyecto (change)="cambioProyecto(selectProyecto.value)" (click)="mostrarMetas()" name="proyectos" id="selectProyecto">
                 <option *ngFor="let proy of proyectos" [value]="proy.idP">
                   {{proy.nombreP}}
                 </option>
@@ -87,10 +87,10 @@
     <div class="card" style="width: 18rem;" [(ngModel)]="metas" *ngFor="let item of metas">
         <div class="card-body">
             <h5 class="card-title">{{item.nombreM}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Age: {{item.email}} Years</h6>
-            <p class="card-text">Address: {{item.email}}</p>
+            <h6 class="card-subtitle mb-2 text-muted">Age: {{item.nombreM}} Years</h6>
+            <!--<p class="card-text">Address: {{item.email}}</p>-->
 
-            <button class="card-link" (click)="RemoveRecord(item.id)">Delete</button>
+            <button class="card-link" (click)="RemoveRecord(item.idM)">Delete</button>
         </div>
     </div>
 
@@ -99,11 +99,11 @@
             <button type="button" (click)="CreateRecord()" [disabled]="!nombre_meta" class="btn btn-primary">+Crear Meta</button>
         </div>
     </div>
-    <div class="row" style="margin-top: 25px;">
+    <!--<div class="row" style="margin-top: 25px;">
         <div class="col-4">
             <div class="card" style="width: 18rem;" *ngFor="let item of metas">
                 <div class="card-body">
-                    <h5 class="card-title">{{item.nombre}}</h5>
+                    <h5 class="card-title">{{item.nombreM}}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Age: {{item.email}} Years</h6>
                     <p class="card-text">Address: {{item.email}}</p>
 
@@ -111,5 +111,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 </div>
