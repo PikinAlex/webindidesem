@@ -23,7 +23,7 @@ export class EvolucionMetaComponent implements OnInit {
     private CrearMeta: CrearMetaService) { }
 
   ngOnInit() {
-    this.Evolucionmeta.leer_evolucion().subscribe(data => {
+    this.Evolucionmeta.leer_evolucion(this.idProy).subscribe(data => {
       this.evolucion = data.map(e => {
         return {
           id: e.payload.doc.id,
