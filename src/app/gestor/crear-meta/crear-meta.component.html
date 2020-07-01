@@ -13,23 +13,28 @@
             </div>
         </div>
         <div class="col">
-            <div class="input-group flex-nowrap">
+            <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="addon-wrapping">@</span>
+                    <label class="input-group-text" for="proyectos">Proyecto</label>
                 </div>
-                <input type="text" class="form-control" [(ngModel)]="email" placeholder="email">
+                <select class="custom-select" #selectProyecto (change)="cambioProyecto(selectProyecto.value)" (click)="mostrarinvitados()" name="proyectos" id="selectProyecto">
+                  <option></option>
+                <option *ngFor="let proy of proyectos" [value]="proy.idP">
+                  {{proy.nombreP}}
+                </option>
+              </select>
             </div>
         </div>
 
         <div class="col">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <label class="input-group-text" for="proyectos">Proyecto</label>
+                    <label class="input-group-text" for="proyectos">Usuario</label>
                 </div>
-                <select class="custom-select" #selectProyecto (change)="cambioProyecto(selectProyecto.value)" (click)="mostrarMetas()" name="proyectos" id="selectProyecto">
+                <select class="custom-select" #selectInvitado (change)="cambioinvitado(selectInvitado.value)" (click)="mostrarMetas()" name="invitados" id="selectInvitado">
                   <option></option>
-                <option *ngFor="let proy of proyectos" [value]="proy.idP">
-                  {{proy.nombreP}}
+                <option *ngFor="let proy of invitados" [value]="proy.idP">
+                  {{proy.email}}
                 </option>
               </select>
             </div>
@@ -94,7 +99,6 @@
             <div class="card" style="width: 18rem;" *ngFor="let item of metas">
                 <div class="card-body">
                     <h5 class="card-title">{{item.nombreM}}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Email: {{item.emailM}}</h6>
                     <p class="card-text">Valor Inicial: {{item.valorInicialM}}</p>
                     <p class="card-text">Medicion: {{item.medicionM}}</p>
                     <p class="card-text">Logro: {{item.logroM}}</p>

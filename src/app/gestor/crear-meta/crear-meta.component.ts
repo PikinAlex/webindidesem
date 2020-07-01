@@ -69,7 +69,6 @@ export class CrearMetaComponent implements OnInit {
         return {
           idM: e.payload.doc.id,
           nombreM: e.payload.doc.data()['nombre_meta'],
-          emailM: e.payload.doc.data()['email'],
           valorInicialM: e.payload.doc.data()['valor_inicial'],
           medicionM: e.payload.doc.data()['medicion'],
           logroM: e.payload.doc.data()['logro'],
@@ -119,14 +118,12 @@ export class CrearMetaComponent implements OnInit {
     let recordID = this.idProy;
     let recordID2 = this.idProy;
     record['nombre_meta'] = this.nombre_meta;
-    record['email'] =  this.email;
     record['valor_inicial'] = this.valor_inicial;
     record['medicion'] = this.valMed;
     record['logro'] = this.valLogro;
     record['frecuencia'] = this.valFrec;
     this.CrearMeta.crear_meta(recordID,recordID2,record).then(resp => {
       this.nombre_meta = "";
-      this.email="";
       this.valor_inicial = "";
       this.valMed = "";
       this.valLogro = "";
