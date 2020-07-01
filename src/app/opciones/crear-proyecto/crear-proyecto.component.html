@@ -2,11 +2,32 @@
     <h1>
         {{title}}
     </h1>
-    <input type="titulo" name="titulo" class="form-control" required minlength="8" [(ngModel)]="nombre_proyecto" placeholder="nombre">
-    <input type="descripcion" name="descripcion" class="form-control" required minlength="8" [(ngModel)]="descripcion" placeholder="descripcion">
-
-    <div *ngIf="authService.userData as user">
-        <label> Usuario: <strong>{{user.email}}</strong></label>
+    <div class="row" style="margin-top: 25px;">
+        <div class="col">
+            <div class="input-group flex-nowrap">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-wrapping">Nombre</span>
+                </div>
+                <input type="titulo" name="titulo" class="form-control" required minlength="8" [(ngModel)]="nombre_proyecto" placeholder="nombre">
+            </div>
+        </div>
+        <div class="col">
+            <div class="input-group flex-nowrap">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-wrapping">Descripción</span>
+                </div>
+                <input type="descripcion" name="descripcion" class="form-control" required minlength="8" [(ngModel)]="descripcion" placeholder="descripción">
+            </div>
+        </div>
     </div>
-    <button class="btn btn-primary" pButton type="button" (click)="CreateRecord()" [disabled]="!nombre_proyecto" label="Crear nuevo proyecto" style="min-width: 300px !important;"></button>
+    <div class="row" style="margin-top: 25px;">
+        <div class="col">
+            <div *ngIf="authService.userData as user">
+                <label> Usuario: <strong>{{user.email}}</strong></label>
+            </div>
+        </div>
+        <div class="col">
+            <button class="btn btn-primary" pButton type="button" (click)="CreateRecord()" [disabled]="!nombre_proyecto" label="Crear nuevo proyecto" style="min-width: 300px !important;"></button>
+        </div>
+    </div>
 </div>
